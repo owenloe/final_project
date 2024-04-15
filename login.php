@@ -1,26 +1,29 @@
 <?php
-	@ob_start();
-	session_start();
-	if(isset($_POST['proses'])){
-		require 'config.php';
-			
-		$user = strip_tags($_POST['user']);
-		$pass = strip_tags($_POST['pass']);
+    @ob_start();
+    session_start();
+    if(isset($_POST['proses'])){
+        require 'config.php';
+        
+        $user = strip_tags($_POST['user']);
+        $pass = strip_tags($_POST['pass']);
 
-		$sql = 'select member.*, login.user, login.pass
-				from member inner join login on member.id_member = login.id_member
-				where user =? and pass = md5(?)';
-		$row = $config->prepare($sql);
-		$row -> execute(array($user,$pass));
-		$jum = $row -> rowCount();
-		if($jum > 0){
-			$hasil = $row -> fetch();
-			$_SESSION['admin'] = $hasil;
-			echo '<script>alert("Login Sukses");window.location="index.php"</script>';
-		}else{
-			echo '<script>alert("Login Gagal");history.go(-1);</script>';
-		}
-	}
+        // Updated SQL query to include levelrole retrieval
+        $sql = 'SELECT member.*, login.user, login.pass, member.levelrole
+                FROM member
+                INNER JOIN login ON member.id_member = login.id_member
+                WHERE login.user = ? AND login.pass = md5(?)';
+        $row = $config->prepare($sql);
+        $row->execute(array($user, $pass));
+        $jum = $row->rowCount();
+        if($jum > 0){
+            $hasil = $row->fetch();
+            $_SESSION['admin'] = $hasil;  // Storing user info
+            $_SESSION['levelrole'] = $hasil['levelrole'];  // Storing user role
+            echo '<script>alert("Login Successful");window.location="index.php"</script>';
+        }else{
+            echo '<script>alert("Login Failed");history.go(-1);</script>';
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
