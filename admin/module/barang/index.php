@@ -1,3 +1,18 @@
+        <script>
+document.addEventListener("DOMContentLoaded", function() {
+    var form = document.querySelector("form");
+    form.addEventListener("submit", function(e) {
+        var hargaBeli = document.querySelector('input[name="beli"]').value;
+        var hargaJual = document.querySelector('input[name="jual"]').value;
+
+        if (parseInt(hargaJual) < parseInt(hargaBeli)) {
+            e.preventDefault();  // Stop the form from submitting
+            alert('Harga jual tidak boleh kurang dari harga beli');
+        }
+    });
+});
+</script>
+
         <h4>Data Barang</h4>
         <br />
         <?php if(isset($_GET['success-stok'])){?>
@@ -218,3 +233,5 @@
             </div>
 
         </div>
+
+        
