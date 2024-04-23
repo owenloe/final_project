@@ -97,7 +97,10 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <?php if($isi['stok'] == '0'){?>
                                 <button class="btn btn-danger"> Habis</button>
                                 <?php }else{?>
-                                <?php echo $isi['stok'];?>
+                               <div style="text-align: right;">
+    <?php echo $isi['stok']; ?>
+</div>
+
                                 <?php }?>
                             </td>
                             <td style="text-align: right;">Rp.<?php echo number_format($isi['harga_beli']); ?>,-</td>
@@ -139,9 +142,17 @@ document.addEventListener("DOMContentLoaded", function() {
                     <tfoot>
                         <tr>
                             <th colspan="5">Total </td>
-                            <th><?php echo $totalStok;?></td>
-                            <th>Rp.<?php echo number_format($totalBeli);?>,-</td>
-                            <th>Rp.<?php echo number_format($totalJual);?>,-</td>
+                            <th style="text-align: right;">
+    <?php echo $totalStok; ?>
+</th>
+
+                            <th style="text-align: right;">
+    Rp.<?php echo number_format($totalBeli); ?>,-
+</th>
+<th style="text-align: right;">
+    Rp.<?php echo number_format($totalJual); ?>,-
+</th>
+
                             <th colspan="2" style="background:#ddd"></th>
                         </tr>
                     </tfoot>

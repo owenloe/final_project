@@ -182,7 +182,10 @@
 								<td><?php echo $no;?></td>
 								<td><?php echo $isi['id_barang'];?></td>
 								<td><?php echo $isi['nama_barang'];?></td>
-								<td><?php echo $isi['jumlah'];?> </td>
+								<td style="text-align: right;">
+    <?php echo $isi['jumlah']; ?>
+</td>
+
 								<td style="text-align: right;">Rp.<?php echo number_format($isi['harga_beli'] * $isi['jumlah']); ?>,-</td>
 <td style="text-align: right;">Rp.<?php echo number_format($isi['total']); ?>,-</td>
 
@@ -194,7 +197,10 @@
 						<tfoot>
 							<tr>
 								<th colspan="3">Total Terjual</td>
-								<th><?php echo $jumlah;?></td>
+								<th style="text-align: right;">
+    <?php echo $jumlah; ?>
+</th>
+
 								<th>Rp.<?php echo number_format($modal);?>,-</th>
 								<th>Rp.<?php echo number_format($bayar);?>,-</th>
 								<th style="background:#0bb365;color:#fff;">Keuntungan</th>
