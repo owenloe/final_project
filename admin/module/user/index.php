@@ -21,28 +21,7 @@
 </div>
 <?php }?>
 <div class="row">
-	<div class="col-sm-3">
-		<div class="card card-primary">
-			<div class="card-header">
-				<h5 class="mt-2"><i class="fa fa-user"></i> Foto Pengguna </h5>
-			</div>
-			<div class="card-body">
-				<img src="assets/img/user/<?php echo $hasil['gambar'];?>" alt="#" class="img-fluid w-100" />
-			</div>
-			<div class="card-footer">
-				<form method="POST" action="fungsi/edit/edit.php?gambar=user" enctype="multipart/form-data">
-					<input type="file" accept="image/*" name="foto">
-					<input type="hidden" value="<?php echo $hasil['gambar'];?>" name="foto2">
-					<input type="hidden" name="id" value="<?php echo $hasil['id_member'];?>">
-					<br><br>	
-					<button type="submit" class="btn btn-primary btn-md" value="Tambah">
-						<i class="fas fa-edit mr-1"></i>  Ganti Foto
-					</button>
-				</form>
-			</div>
-		</div>
-	</div>
-	<div class="col-sm-5">
+	<div class="col-sm-7">
 		<div class="card card-primary">
 			<div class="card-header">
 				<h5 class="mt-2"><i class="fa fa-user"></i> Kelola Pengguna </h5>
@@ -60,7 +39,7 @@
 										required="required" />
 								</div>
 							</div>
-							<div class="control-group mb-3">
+							<div class="control-group mb-4">
 								<label class="control-label" for="typeahead">Email </label>
 								<div class="input-group">
 									<input type="email" class="form-control" style="border-radius:0px;" name="email"
@@ -106,28 +85,64 @@
 			<div class="card-body">
 				<div class="box-content">
 					<form class="form-horizontal" method="POST" action="fungsi/edit/edit.php?pass=ganti-pas">
-						<fieldset>
-							<div class="control-group mb-3">
-								<label class="control-label" for="typeahead">Username </label>
-								<div class="input-group">
-									<input type="text" class="form-control" style="border-radius:0px;" name="user"
-										data-items="4" value="<?php echo $hasil['user'];?>" />
-								</div>
-							</div>
-							<div class="control-group mb-3">
-								<label class="control-label" for="typeahead">Password Baru</label>
-								<div class="input-group">
-									<input type="password" class="form-control" placeholder="Enter Your New Password" id="pass" name="pass" data-items="4" value=""
-										required="required" />
-								</div>
-							</div>
-							<input type="hidden" class="form-control" style="border-radius:0px;" name="id"
-								value="<?php echo $hasil['id_member'];?>" required="required" />
-							<button type="submit" class="btn btn-primary" value="Tambah" name="proses"><i class="fas fa-edit"></i> Ubah Password</button>
-						</fieldset>
-					</form>
+    <fieldset>
+        <div class="control-group mb-3">
+    <label class="control-label" for="typeahead">Username </label>
+    <div class="input-group">
+        <input type="text" class="form-control" style="border-radius:0px;" name="user" value="<?php echo $hasil['user'];?>" readonly />
+    </div>
+</div>
+
+        <div class="control-group mb-3">
+    <label class="control-label" for="newPassword">Password Baru</label>
+    <div class="input-group" style="position: relative;">
+        <input type="password" class="form-control" placeholder="Enter Your New Password" id="newPassword" name="newPassword" required 
+            style="padding-right: 50px;" /> <!-- padding for eye icon -->
+        <button class="btn btn-outline-secondary toggle-password" type="button" data-input="newPassword"
+            style="border: none; background: transparent; position: absolute; right: 0; z-index: 10; padding: 10px; height: 100%; outline: none;">
+            <i class="fas fa-eye"></i>
+        </button>
+    </div>
+</div>
+<div class="control-group mb-3">
+    <label class="control-label" for="confirmNewPassword">Konfirmasi Password Baru</label>
+    <div class="input-group" style="position: relative;">
+        <input type="password" class="form-control" placeholder="Confirm Your New Password" id="confirmNewPassword" name="confirmNewPassword" required
+            style="padding-right: 50px;" /> <!-- padding for eye icon -->
+        <button class="btn btn-outline-secondary toggle-password" type="button" data-input="confirmNewPassword"
+            style="border: none; background: transparent; position: absolute; right: 0; z-index: 10; padding: 10px; height: 100%; outline: none;">
+            <i class="fas fa-eye-slash"></i>
+        </button>
+    </div>
+</div>
+
+        <input type="hidden" class="form-control" style="border-radius:0px;" name="id" value="<?php echo $hasil['id_member'];?>" required />
+        <button type="submit" class="btn btn-primary" name="proses"><i class="fas fa-edit"></i> Ubah Password</button>
+    </fieldset>
+</form>
+
+
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<body>
+	<script>
+	document.querySelectorAll('.toggle-password').forEach(function(button) {
+    button.addEventListener('click', function() {
+        var inputId = this.getAttribute('data-input');
+        var input = document.getElementById(inputId);
+        if (input.type === 'password') {
+            input.type = 'text';
+            this.innerHTML = '<i class="fas fa-eye-slash"></i>'; // change icon to eye-slash
+        } else {
+            input.type = 'password';
+            this.innerHTML = '<i class="fas fa-eye"></i>'; // change icon back to eye
+        }
+    });
+});
+</script>
+
+</body>

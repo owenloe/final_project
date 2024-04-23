@@ -11,54 +11,51 @@
 	$toko = $lihat -> toko();
 	$hsl = $lihat -> penjualan();
 ?>
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>print</title>
-		<link rel="stylesheet" href="assets/css/bootstrap.css">
-	</head>
-	<body>
-		<script>window.print();</script>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4"></div>
-				<div class="col-sm-4">
-					<center>
-						<p><?php echo $toko['nama_toko'];?></p>
-						<p><?php echo $toko['alamat_toko'];?></p>
-						<p>Tanggal : <?php  echo date("j F Y, G:i");?></p>
-						<p>Kasir : <?php  echo htmlentities($_GET['nm_member']);?></p>
-					</center>
-					<table class="table table-bordered" style="width:100%;">
-						<tr>
-							<td>No.</td>
-							<td>Barang</td>
-							<td>Jumlah</td>
-							<td>Total</td>
-						</tr>
-						<?php $no=1; foreach($hsl as $isi){?>
-						<tr>
-							<td><?php echo $no;?></td>
-							<td><?php echo $isi['nama_barang'];?></td>
-							<td><?php echo $isi['jumlah'];?></td>
-							<td><?php echo $isi['total'];?></td>
-						</tr>
-						<?php $no++; }?>
-					</table>
-					<div class="pull-right">
-						<?php $hasil = $lihat -> jumlah(); ?>
-						Total : Rp.<?php echo number_format($hasil['bayar']);?>,-
-						<br/>
-						Bayar : Rp.<?php echo number_format(htmlentities($_GET['bayar']));?>,-
-						<br/>
-						Kembali : Rp.<?php echo number_format(htmlentities($_GET['kembali']));?>,-
-					</div>
-					<div class="clearfix"></div>
-					<center>
-						<p>Terima Kasih Telah berbelanja di toko kami !</p>
-					</center>
-				</div>
-				<div class="col-sm-4"></div>
-			</div>
-		</div>
-	</body>
+<head>
+    <title>Print</title>
+</head>
+<body onload="window.print();">
+    <div style="text-align: center; margin-top: 50px;">
+        <h2 style="color: #333; font-size:50px;"><?php echo $toko['nama_toko']; ?></h2>
+        <div style="text-align: left; margin-left: 150px;"> <!-- Adjust margin as needed -->
+    <p><?php echo $toko['alamat_toko']; ?></p>
+    <p>Tanggal: <?php echo date("j F Y, G:i"); ?></p>
+    <p>Kasir: <?php echo htmlentities($_GET['nm_member']); ?></p>
+</div>
+<div>
+            <div style="position: absolute; left: 1120px; top: 110px;">
+            <img src="/final_project-main/CEM-60032.png" alt="Company Logo" style="max-width: 130px; max-height: 130px; ">
+        </div>
+</div>
+
+
+        <table style="margin: auto; border-collapse: collapse; width: 80%;">
+            <tr>
+                <th style="border: 1px solid #ddd; padding: 8px; background-color: #4e73de; color: white;">No.</th>
+                <th style="border: 1px solid #ddd; padding: 8px; background-color: #4e73de; color: white;">Barang</th>
+                <th style="border: 1px solid #ddd; padding: 8px; background-color: #4e73de; color: white;">Jumlah</th>
+                <th style="border: 1px solid #ddd; padding: 8px; background-color: #4e73de; color: white;">Total</th>
+            </tr>
+            <?php $no = 1; foreach ($hsl as $isi) { ?>
+            <tr style="background-color: <?php echo $no % 2 === 0 ? '#f2f2f2' : 'none'; ?>;">
+                <td style="border: 1px solid #ddd; padding: 8px;"><?php echo $no; ?></td>
+                <td style="border: 1px solid #ddd; padding: 8px;"><?php echo $isi['nama_barang']; ?></td>
+                <td style="border: 1px solid #ddd; padding: 8px;"><?php echo $isi['jumlah']; ?></td>
+                <td style="border: 1px solid #ddd; padding: 8px;"><?php echo "Rp. " . number_format($isi['total'], 2, ',', '.'); ?></td>
+            </tr>
+            <?php $no++; } ?>
+        </table>
+
+        <div style="text-align: right; margin-top: 20px; margin-right: 20%;">
+            <?php $hasil = $lihat -> jumlah(); ?>
+						Total : Rp.<?php echo number_format($hasil['bayar']);?>,
+            <p>Bayar: <?php echo "Rp. " . number_format(htmlentities($_GET['bayar']), 2, ',', '.'); ?>,-</p>
+            <p>Kembali: <?php echo "Rp. " . number_format(htmlentities($_GET['kembali']), 2, ',', '.'); ?>,-</p>
+        </div>
+
+        <p style="margin-top: 50px; color: #333;font-size: 30px;">Terima Kasih Telah Berbelanja di Toko Kami!</p>
+    </div>
+</body>
 </html>

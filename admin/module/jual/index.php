@@ -180,11 +180,11 @@
 								<td><input type="text" class="form-control" value="<?php echo $hitung;?>"></td>
 								<td></td>
 								<td>
-									<!--<a href="print.php?nm_member=<?php echo $_SESSION['admin']['nm_member'];?>
+									<a href="print.php?nm_member=<?php echo $_SESSION['admin']['nm_member'];?>
 									&bayar=<?php echo $bayar;?>&kembali=<?php echo $hitung;?>" target="_blank">
 									<button class="btn btn-secondary">
 										<i class="fa fa-print"></i> Print Untuk Bukti Pembayaran
-									</button></a> -->
+									</button></a> 
 								</td>
 							</tr>
 						</table>

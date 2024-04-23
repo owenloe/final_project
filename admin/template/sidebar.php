@@ -98,8 +98,6 @@
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        <img class="img-profile rounded-circle"
-                            src="assets/img/user/<?php echo $hasil_profil['gambar'];?>">
                         <span
                             class="mr-2 d-none d-lg-inline text-gray-600 small ml-2"><?php echo $hasil_profil['nm_member'];?></span>
                         <i class="fas fa-angle-down"></i>

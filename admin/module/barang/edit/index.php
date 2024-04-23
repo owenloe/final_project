@@ -65,6 +65,7 @@
 							</option>
 							<option value="#">Pilih Satuan</option>
 							<option value="PCS">PCS</option>
+							<option value="SEt">SET</option>
 						</select>
 					</td>
 				</tr>
@@ -79,7 +80,13 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td><button class="btn btn-primary"><i class="fa fa-edit"></i> Update Data</button></td>
+					<td>
+    <button class="btn btn-primary" onclick="return confirm('Are you sure you want to update this data?');">
+        <i class="fa fa-edit"></i> Update Data
+    </button>
+</td>
+
+
 				</tr>
 			</form>
 		</table>

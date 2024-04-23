@@ -21,16 +21,17 @@ if (!empty($_SESSION['admin'])) {
     }
 
     if (!empty($_GET['kategori'])) {
-        $nama= htmlentities($_POST['kategori']);
-        $id= htmlentities($_POST['id']);
+        $nama = htmlentities($_POST['kategori']);
+        $id = htmlentities($_POST['id']);
         $data[] = $nama;
         $data[] = $id;
-        $sql = 'UPDATE kategori SET  nama_kategori=? WHERE id_kategori=?';
+        $sql = 'UPDATE kategori SET nama_kategori=? WHERE id_kategori=?';
         $row = $config -> prepare($sql);
         $row -> execute($data);
-        echo '<script>window.location="../../index.php?page=kategori&uid='.$id.'&success-edit=edit-data"</script>';
+        // Redirect without the uid parameter to reset the form to "insert" mode
+        echo '<script>window.location="../../index.php?page=kategori&success-edit=edit-data"</script>';
     }
-
+    
     if (!empty($_GET['stok'])) {
         $restok = htmlentities($_POST['restok']);
         $id = htmlentities($_POST['id']);
@@ -155,18 +156,22 @@ if (!empty($_SESSION['admin'])) {
     }
     
     if (!empty($_GET['pass'])) {
-        $id = htmlentities($_POST['id']);
-        $user = htmlentities($_POST['user']);
-        $pass = htmlentities($_POST['pass']);
+    $id = htmlentities($_POST['id']);
+    $user = htmlentities($_POST['user']);
+    $newPassword = htmlentities($_POST['newPassword']);
+    $confirmNewPassword = htmlentities($_POST['confirmNewPassword']);
 
-        $data[] = $user;
-        $data[] = $pass;
-        $data[] = $id;
-        $sql = 'UPDATE login SET user=?,pass=md5(?) WHERE id_member=?';
-        $row = $config -> prepare($sql);
-        $row -> execute($data);
+    if ($newPassword == $confirmNewPassword) {
+        $data = array($user, md5($newPassword), $id);
+        $sql = 'UPDATE login SET user=?, pass=? WHERE id_member=?';
+        $row = $config->prepare($sql);
+        $row->execute($data);
         echo '<script>window.location="../../index.php?page=user&success=edit-data"</script>';
+    } else {
+        echo '<script>alert("New password and confirmation do not match."); window.location="../../index.php?page=user&failed=edit-data"</script>';
     }
+}
+
 
     if (!empty($_GET['jual'])) {
         $id = htmlentities($_POST['id']);

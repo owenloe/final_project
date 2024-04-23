@@ -100,8 +100,9 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <?php echo $isi['stok'];?>
                                 <?php }?>
                             </td>
-                            <td>Rp.<?php echo number_format($isi['harga_beli']);?>,-</td>
-                            <td>Rp.<?php echo number_format($isi['harga_jual']);?>,-</td>
+                            <td style="text-align: right;">Rp.<?php echo number_format($isi['harga_beli']); ?>,-</td>
+<td style="text-align: right;">Rp.<?php echo number_format($isi['harga_jual']); ?>,-</td>
+
                             <td> <?php echo $isi['satuan_barang'];?></td>
                             <td>
                                 <?php if($isi['stok'] <=  '3'){?>
@@ -208,6 +209,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                         <select name="satuan" class="form-control" required>
                                             <option value="#">Pilih Satuan</option>
                                             <option value="PCS">PCS</option>
+                                             <option value="SET">SET</option>
                                         </select>
                                     </td>
                                 </tr>
