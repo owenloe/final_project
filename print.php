@@ -26,7 +26,7 @@
 </div>
 <div>
             <div style="position: absolute; left: 1120px; top: 110px;">
-            <img src="/final_project-main/CEM-60032.png" alt="Company Logo" style="max-width: 130px; max-height: 130px; ">
+            <img src="/final_project/CEM-60032.png" alt="Company Logo" style="max-width: 130px; max-height: 130px; ">
         </div>
 </div>
 
